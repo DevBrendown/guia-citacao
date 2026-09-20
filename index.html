@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guia de Citações Coloridas no GitHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Nova+Square&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-raised: #11161d;
+    --border: #21262d;
+    --text: #c9d1d9;
+    --text-dim: #8b949e;
+    --text-bright: #e6edf3;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: "Exo 2", -apple-system, sans-serif;
+    --display: "Nova Square", ui-monospace, monospace;
+
+    --note: #58a6ff;
+    --note-bg: rgba(56,139,253,0.1);
+    --tip: #3fb950;
+    --tip-bg: rgba(46,160,67,0.1);
+    --warning: #d29922;
+    --warning-bg: rgba(187,128,9,0.1);
+    --important: #ab7df8;
+    --important-bg: rgba(163,113,247,0.1);
+
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-padding-top: 90px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: rgba(88,166,255,0.3); }
+
+  a { color: var(--note); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  code, pre {
+    font-family: var(--mono);
+    font-size: 0.86em;
+  }
+
+  code {
+    background: rgba(110,118,129,0.15);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: #e6edf3;
+  }
+
+  pre {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    color: #e6edf3;
+    margin: 0;
+  }
+  pre code { background: none; padding: 0; }
+
+  /* --- top nav --- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .nav-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 0.92rem;
+    letter-spacing: 0.02em;
+    color: var(--text-bright);
+    white-space: nowrap;
+  }
+  .brand span { color: var(--note); }
+  nav.pills {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav.pills::-webkit-scrollbar { display: none; }
+  nav.pills a {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  nav.pills a:hover {
+    color: var(--text-bright);
+    background: rgba(110,118,129,0.1);
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 100px;
+  }
+
+  /* --- hero --- */
+  .hero {
+    margin-bottom: 64px;
+  }
+  .hero .kicker {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 4.6vw, 2.35rem);
+    line-height: 1.25;
+    letter-spacing: 0;
+    color: var(--text-bright);
+    margin: 0 0 18px;
+    max-width: 16ch;
+  }
+  .hero p {
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    max-width: 54ch;
+    margin: 0;
+  }
+
+  /* preview strip in hero: mini alerts */
+  .hero-strip {
+    display: flex;
+    gap: 6px;
+    margin-top: 32px;
+  }
+  .hero-strip .chip {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  section { margin-bottom: 60px; }
+
+  h2 {
+    font-size: 1.3rem;
+    color: var(--text-bright);
+    margin: 0 0 8px;
+    scroll-margin-top: 90px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .idx {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+  section > p.lede {
+    color: var(--text-dim);
+    margin: 0 0 20px;
+    max-width: 58ch;
+  }
+
+  .intro-block p { color: var(--text); max-width: 62ch; }
+
+  /* --- alert component --- */
+  .alert-demo {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .alert-demo .label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: lowercase;
+  }
+
+  .ghalert {
+    border-left: 3px solid;
+    padding: 10px 16px;
+    border-radius: 0 6px 6px 0;
+    background: transparent;
+  }
+  .ghalert .ghalert-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 4px;
+  }
+  .ghalert .ghalert-title svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .ghalert p { margin: 0; color: var(--text); font-size: 0.93rem; }
+
+  .ghalert.note    { border-color: var(--note);    }
+  .ghalert.note    .ghalert-title { color: var(--note); }
+  .ghalert.tip     { border-color: var(--tip);     }
+  .ghalert.tip     .ghalert-title { color: var(--tip); }
+  .ghalert.warning { border-color: var(--warning); }
+  .ghalert.warning .ghalert-title { color: var(--warning); }
+  .ghalert.important { border-color: var(--important); }
+  .ghalert.important .ghalert-title { color: var(--important); }
+
+  /* --- table --- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    margin-top: 12px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    color: var(--text-dim);
+    font-weight: 500;
+    font-size: 0.78rem;
+    font-family: var(--mono);
+  }
+  td:first-child { font-family: var(--mono); font-size: 0.85rem; }
+  tr td:first-child.note-c { color: var(--note); }
+  tr td:first-child.tip-c { color: var(--tip); }
+  tr td:first-child.warning-c { color: var(--warning); }
+  tr td:first-child.important-c { color: var(--important); }
+
+  /* --- rules list --- */
+  ul.rules {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: grid;
+    gap: 10px;
+  }
+  ul.rules li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  ul.rules li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--note);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* --- wrong example --- */
+  .wrong {
+    border-left: 3px solid #f85149;
+    padding: 10px 16px;
+    border-radius: 0 6px 6px 0;
+    background: rgba(248,81,73,0.08);
+  }
+  .wrong pre { background: none; border: none; padding: 0; }
+  .wrong .verdict {
+    font-size: 0.85rem;
+    color: #f85149;
+    margin-top: 8px;
+  }
+
+  /* --- compatibility grid --- */
+  .compat {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .compat div {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+  }
+  .compat div svg { width: 14px; height: 14px; color: var(--tip); flex-shrink: 0; }
+
+  /* --- footer --- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+  footer .footer-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+  footer a.author {
+    font-family: var(--mono);
+    color: var(--text-bright);
+  }
+
+  @media (max-width: 600px) {
+    .compat { grid-template-columns: 1fr; }
+    .nav-inner { padding: 12px 16px; }
+    main { padding: 40px 16px 80px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--note);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">guia<span>://</span>alerts</div>
+    <nav class="pills">
+      <a href="#note">Note</a>
+      <a href="#tip">Tip</a>
+      <a href="#warning">Warning</a>
+      <a href="#important">Important</a>
+      <a href="#quando-usar">Quando usar</a>
+      <a href="#regras">Regras</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="kicker">📘 markdown / github / documentação</div>
+    <h1>Citações coloridas no GitHub, direto do Markdown.</h1>
+    <p>Os Alerts são blocos de destaque oficiais do GitHub — quatro variações de citação que deixam READMEs, issues e pull requests mais fáceis de ler, sem sair do Markdown puro.</p>
+    <div class="hero-strip">
+      <div class="chip" style="background:var(--note)"></div>
+      <div class="chip" style="background:var(--tip)"></div>
+      <div class="chip" style="background:var(--warning)"></div>
+      <div class="chip" style="background:var(--important)"></div>
+    </div>
+  </section>
+
+  <section class="intro-block">
+    <h2>O que são <span class="idx">// conceito</span></h2>
+    <p>Alerts são blocos especiais baseados em citação (<code>&gt;</code>) que o GitHub renderiza com cor, ícone e título próprios — parecidos com as caixas informativas de documentações técnicas modernas.</p>
+    <pre><code>&gt; [!TIP]
+&gt; Seu texto aqui</code></pre>
+  </section>
+
+  <section id="note">
+    <h2>Note <span class="idx">01</span></h2>
+    <p class="lede">Uma observação complementar ou explicação extra — não muda o que o leitor precisa fazer, só ajuda a entender melhor.</p>
+    <div class="alert-demo">
+      <div>
+        <div class="label">código</div>
+        <pre><code>&gt; [!NOTE]
+&gt; Esta funcionalidade funciona apenas no GitHub Markdown.</code></pre>
+      </div>
+      <div>
+        <div class="label">resultado</div>
+        <div class="ghalert note">
+          <div class="ghalert-title">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>
+            Note
+          </div>
+          <p>Esta funcionalidade funciona apenas no GitHub Markdown.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tip">
+    <h2>Tip <span class="idx">02</span></h2>
+    <p class="lede">Sugestões, boas práticas ou atalhos úteis para quem está lendo.</p>
+    <div class="alert-demo">
+      <div>
+        <div class="label">código</div>
+        <pre><code>&gt; [!TIP]
+&gt; Utilize nomes de variáveis claros para melhorar a leitura do código.</code></pre>
+      </div>
+      <div>
+        <div class="label">resultado</div>
+        <div class="ghalert tip">
+          <div class="ghalert-title">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a5 5 0 0 0-3 9v1.5A1.5 1.5 0 0 0 6.5 13h3A1.5 1.5 0 0 0 11 11.5V10a5 5 0 0 0-3-9ZM6.5 14.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Z"/></svg>
+            Tip
+          </div>
+          <p>Utilize nomes de variáveis claros para melhorar a leitura do código.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="warning">
+    <h2>Warning <span class="idx">03</span></h2>
+    <p class="lede">Algo que pode causar erro, problema técnico ou comportamento inesperado.</p>
+    <div class="alert-demo">
+      <div>
+        <div class="label">código</div>
+        <pre><code>&gt; [!WARNING]
+&gt; Não execute este comando em ambiente de produção.</code></pre>
+      </div>
+      <div>
+        <div class="label">resultado</div>
+        <div class="ghalert warning">
+          <div class="ghalert-title">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575ZM8 5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5A.75.75 0 0 1 8 5Zm0 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+            Warning
+          </div>
+          <p>Não execute este comando em ambiente de produção.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="important">
+    <h2>Important <span class="idx">04</span></h2>
+    <p class="lede">Algo essencial que o leitor precisa saber antes de continuar.</p>
+    <div class="alert-demo">
+      <div>
+        <div class="label">código</div>
+        <pre><code>&gt; [!IMPORTANT]
+&gt; Certifique-se de instalar todas as dependências antes de executar o projeto.</code></pre>
+      </div>
+      <div>
+        <div class="label">resultado</div>
+        <div class="ghalert important">
+          <div class="ghalert-title">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A.25.25 0 0 1 5.06 15.5V13H1.75A1.75 1.75 0 0 1 0 11.25Zm7.25 3v2.5a.75.75 0 0 0 1.5 0v-2.5a.75.75 0 0 0-1.5 0ZM8 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+            Important
+          </div>
+          <p>Certifique-se de instalar todas as dependências antes de executar o projeto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quando-usar">
+    <h2>Quando usar cada um <span class="idx">// referência</span></h2>
+    <table>
+      <thead>
+        <tr><th>Tipo</th><th>Quando usar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="note-c">NOTE</td><td>Informação complementar</td></tr>
+        <tr><td class="tip-c">TIP</td><td>Dica ou recomendação</td></tr>
+        <tr><td class="warning-c">WARNING</td><td>Possível risco ou erro</td></tr>
+        <tr><td class="important-c">IMPORTANT</td><td>Informação essencial</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="regras">
+    <h2>Regras importantes</h2>
+    <ul class="rules">
+      <li>Funciona apenas no GitHub — não em todo Markdown.</li>
+      <li>Deve começar com <code>&gt;</code> (citação).</li>
+      <li>O identificador precisa estar em maiúsculo, entre colchetes: <code>[!TIP]</code>.</li>
+      <li>O texto do alerta fica na linha abaixo, também com <code>&gt;</code>.</li>
+    </ul>
+
+    <div style="margin-top:24px">
+      <div class="label" style="font-family:var(--mono);font-size:0.72rem;color:var(--text-dim);margin-bottom:8px">exemplo incorreto</div>
+      <div class="wrong">
+        <pre><code>[!TIP] Texto aqui</code></pre>
+        <p class="verdict">Não funciona — falta o símbolo <code>&gt;</code> no início.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dica extra</h2>
+    <p class="lede">Emojis funcionam normalmente dentro de qualquer alert.</p>
+    <div class="ghalert tip">
+      <div class="ghalert-title">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a5 5 0 0 0-3 9v1.5A1.5 1.5 0 0 0 6.5 13h3A1.5 1.5 0 0 0 11 11.5V10a5 5 0 0 0-3-9ZM6.5 14.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Z"/></svg>
+        Tip
+      </div>
+      <p>🚀 Automatize tarefas repetitivas sempre que possível.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Compatibilidade</h2>
+    <div class="compat">
+      <div><svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg> README.md</div>
+      <div><svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg> Issues</div>
+      <div><svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg> Pull Requests</div>
+      <div><svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg> Wikis do GitHub</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>Guia criado para ajudar devs a melhorar documentações com Markdown moderno.</p>
+    <a class="author" href="https://github.com/DevBrendown" target="_blank" rel="noopener">@DevBrendown</a>
+  </div>
+</footer>
+
+</body>
+</html>
